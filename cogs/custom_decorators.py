@@ -4,9 +4,9 @@ import os
 
 load_dotenv()
 
-POKER_CATEGORY = os.getenv('POKER_CATEGORY')
-ADMIN_CATEGORY = os.getenv('ADMIN_CATEGORY')
-TEST_CATEGORY = os.getenv('TEST_CATEGORY')
+POKER_CATEGORY = int(os.getenv('POKER_CATEGORY'))
+ADMIN_CATEGORY = int(os.getenv('ADMIN_CATEGORY'))
+TEST_CATEGORY = int(os.getenv('TEST_CATEGORY'))
 
 
 
