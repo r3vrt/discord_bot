@@ -18,7 +18,7 @@ def check_poker(ctx):
 
 def check_admin(ctx):
 
-    return ctx.message.channel.category_id == ADMIN_CATEGORY and ctx.prefix == str(PREFIX[2])
+    return ctx.prefix == str(PREFIX[2])
 
 
 def check_general(ctx):
