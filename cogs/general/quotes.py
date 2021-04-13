@@ -52,12 +52,15 @@ class Quotes(commands.Cog):
             "Random Quote"
         ]
         }
+
         if args:
             response = random.choice(quote_dict[str(args[0])])
-            await ctx.send("{}:\n```{}```".format(str(args[0]), response) )
+            await ctx.send("{}:\n```{}```".format(str(args[0]), response))
         else:
-            response = random.choice(quote_dict['Ron'])
-            await ctx.send("Ron:\n```{}```".format(response))
+            dic_key = random.choice(list(quote_dict.keys()))
+            response = random.choice(quote_dict[dic_key])
+            await ctx.send("{}:\n```{}```".format(dic_key, response))
+
 
 
 
