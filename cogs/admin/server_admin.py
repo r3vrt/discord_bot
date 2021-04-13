@@ -64,5 +64,14 @@ class server_admin(commands.Cog):
             limit += 1
         await ctx.channel.purge(limit=limit)
 
+    @commands.command('list_cats',
+    brief='This will list server categories',
+    description='This will print a list of all server categories')
+    @commands.check(custom_decorators.check_admin)
+    @commands.has_role('@Admin')
+    async def list_server_categories(self, ctx):
+        for channel in ctx.guild.channels:
+            print("Channel Name: {} ID: {}".format(channel.name, channel.id))
+
 def setup(bot):
     bot.add_cog(server_admin(bot))
