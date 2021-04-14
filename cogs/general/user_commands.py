@@ -10,7 +10,7 @@ class General(commands.Cog):
 
         self.bot = bot
 
-    #@commands.check(custom_decorators.check_general)
+    @commands.check(custom_decorators.check_general)
     @commands.command(name='countdown',
     brief='Will count from a supplied number down to 0',
     description='Input a number and the bot will count down to 0 with output every 10 seconds and all counts under 5')
