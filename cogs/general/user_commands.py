@@ -20,10 +20,10 @@ class General(commands.Cog):
             timer = int(number)
             if timer > 180:
                 await ctx.send("Maximum timer is 3 minutes (180s)!")
-                raise BaseException
+                return
             if timer <= 0:
                 await ctx.send('Can\'t count down from 0, ffs!')
-                raise BaseException
+                return
             embed = discord.Embed(title='Countdown Timer')
             embed.add_field(name='Timer', value='{}'.format(timer))
             message = await ctx.send(embed=embed)
