@@ -2,6 +2,7 @@ from discord.ext import commands
 from .. import custom_decorators
 import discord
 import random
+import asyncio
 
 class General(commands.Cog):
 
@@ -9,6 +10,47 @@ class General(commands.Cog):
 
         self.bot = bot
 
+    #@commands.check(custom_decorators.check_general)
+    @commands.command(name='countdown',
+    brief='Will count from a supplied number down to 0',
+    description='Input a number and the bot will count down to 0 with output every 10 seconds and all counts under 5')
+    async def countdown_timer(self, ctx, number):
+
+        try:
+            timer = int(number)
+            if timer > 180:
+                await ctx.send("Maximum timer is 3 minutes (180s)!")
+                raise BaseException
+            if timer <= 0:
+                await ctx.send('Can\'t count down from 0, ffs!')
+                raise BaseException
+            embed = discord.Embed(title='Countdown Timer')
+            embed.add_field(name='Timer', value='{}'.format(timer))
+            message = await ctx.send(embed=embed)
+            while True:
+
+                timer -= 1
+                if timer == 0:
+                    embed = discord.Embed(title='Countdown Timer')
+                    embed.add_field(name='Timer', value='Times UP!')
+                    await message.edit(embed=embed)
+                    break
+
+                if timer % 10 == 0:
+                    embed = discord.Embed(title='Countdown Timer')
+                    embed.add_field(name='Timer', value='{}'.format(timer))
+                    await message.edit(embed=embed)
+                if timer <= 5:
+                    embed = discord.Embed(title='Countdown Timer')
+                    embed.add_field(name='Timer', value='{}'.format(timer))
+                    await message.edit(embed=embed)
+
+                await asyncio.sleep(1)
+            await ctx.send("The countdown has ended!")
+        except ValueError:
+            await ctx.send("Please enter a number ffs") 
+
+    
     @commands.check(custom_decorators.check_general)
     @commands.command(name='nick',
     brief="Change your nickname",
