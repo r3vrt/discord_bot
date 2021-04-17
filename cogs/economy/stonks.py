@@ -1,6 +1,7 @@
 from discord.ext import commands
 import discord
 from yahoo_fin import stock_info as si
+from .. import custom_decorators
 
 class Finance(commands.Cog):
 
