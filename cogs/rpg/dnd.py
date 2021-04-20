@@ -61,6 +61,22 @@ class DND_Tools(commands.Cog):
         else:
             await ctx.send("{} rolled: {}".format(name, random.randint(1, 8)))
 
+    @commands.check(custom_decorators.check_dnd)
+    @commands.command(name="d10",
+    brief="Will roll an 8 sided dice",
+    description="This command will output the result of a dice roll from 1 - 8. If you want multiple rolls add the number you want after the command.")
+    async def dice_ten(self, ctx, *args):
+
+        if ctx.message.author.nick:
+            name = ctx.message.author.nick
+        else:
+            name = ctx.message.author.name
+
+        if args:
+            result =  [random.randint(1, 10) for _ in range(int(args[0]))]
+            await ctx.send("You rolled: {}".format(result))
+        else:
+            await ctx.send("{} rolled: {}".format(name, random.randint(1, 10)))
 
     @commands.check(custom_decorators.check_dnd)
     @commands.command(name="d12",
@@ -96,6 +112,6 @@ class DND_Tools(commands.Cog):
         else:
             await ctx.send("{} rolled: {}".format(name, random.randint(1, 20)))
 
-            
+
 def setup(bot):
     bot.add_cog(DND_Tools(bot))
