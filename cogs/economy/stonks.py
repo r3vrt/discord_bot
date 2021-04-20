@@ -1,6 +1,7 @@
 from discord.ext import commands
 import discord
 from yahoo_fin import stock_info as si
+from .. import custom_decorators
 
 class Finance(commands.Cog):
 
@@ -15,12 +16,12 @@ class Finance(commands.Cog):
     async def stonks(self, ctx, ticker):
         await ctx.send("The current price of {} is {}".format(ticker, round(float(si.get_live_price(ticker)), 2)))
 
-
-    @commands.command(name='crypto',
-    brief='This will list the top 100 cryptos prices',
-    description='This command lists out the top 100 cryptos prices by default.')
-    async def crypto(self, ctx):
-        await ctx.send(si.get_top_crypto())
+    #TBC
+    # @commands.command(name='crypto',
+    # brief='This will list the top 100 cryptos prices',
+    # description='This command lists out the top 100 cryptos prices by default.')
+    # async def crypto(self, ctx):
+    #     await ctx.send(si.get_top_crypto())
         
 
 def setup(bot):

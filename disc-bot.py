@@ -22,7 +22,8 @@ cogs = [
     'cogs.general.quotes',
     'cogs.economy.stonks',
     'cogs.cards.poker_commands',
-    'cogs.general.insults'
+    'cogs.general.insults',
+    'cogs.rpg.dnd'
     ]
 
 for ext in cogs:
