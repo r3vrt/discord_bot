@@ -3,6 +3,19 @@ from .. import custom_decorators
 from discord.ext import commands
 import discord
 
+def dice_roll(ctx, sides, count):
+    if ctx.message.author.nick:
+        name = ctx.message.author.nick
+    else:
+        name = ctx.message.author.name
+    
+    if count:
+        result = "{} rolled: {}".format(name, [random.randint(1, sides) for _ in range(int(count[0]))])
+    else:
+        result =  "{} rolled: {}".format(name, [random.randint(1, sides) for _ in range(1)])
+    return result 
+
+
 class DND_Tools(commands.Cog):
 
     def __init__(self, bot):
@@ -15,17 +28,7 @@ class DND_Tools(commands.Cog):
     description="This command will output the result of a dice roll from 1 - 4. If you want multiple rolls add the number you want after the command.")
     async def dice_four(self, ctx, *args):
 
-        if ctx.message.author.nick:
-            name = ctx.message.author.nick
-        else:
-            name = ctx.message.author.name
-
-        if args:
-            result =  [random.randint(1, 4) for _ in range(int(args[0]))]
-            await ctx.send("You rolled: {}".format(result))
-        else:
-            await ctx.send("{} rolled: {}".format(name, random.randint(1, 4)))
-        
+        await ctx.send(dice_roll(ctx, 4, args))
 
     @commands.check(custom_decorators.check_dnd)
     @commands.command(name="d6",
@@ -33,16 +36,7 @@ class DND_Tools(commands.Cog):
     description="This command will output the result of a dice roll from 1 - 6. If you want multiple rolls add the number you want after the command.")
     async def dice_six(self, ctx, *args):
 
-        if ctx.message.author.nick:
-            name = ctx.message.author.nick
-        else:
-            name = ctx.message.author.name
-
-        if args:
-            result =  [random.randint(1, 6) for _ in range(int(args[0]))]
-            await ctx.send("You rolled: {}".format(result))
-        else:
-            await ctx.send("{} rolled: {}".format(name, random.randint(1, 6)))
+        await ctx.send(dice_roll(ctx, 6, args))
 
     @commands.check(custom_decorators.check_dnd)
     @commands.command(name="d8",
@@ -50,16 +44,7 @@ class DND_Tools(commands.Cog):
     description="This command will output the result of a dice roll from 1 - 8. If you want multiple rolls add the number you want after the command.")
     async def dice_eight(self, ctx, *args):
 
-        if ctx.message.author.nick:
-            name = ctx.message.author.nick
-        else:
-            name = ctx.message.author.name
-
-        if args:
-            result =  [random.randint(1, 8) for _ in range(int(args[0]))]
-            await ctx.send("You rolled: {}".format(result))
-        else:
-            await ctx.send("{} rolled: {}".format(name, random.randint(1, 8)))
+        await ctx.send(dice_roll(ctx, 8, args))
 
     @commands.check(custom_decorators.check_dnd)
     @commands.command(name="d10",
@@ -67,16 +52,7 @@ class DND_Tools(commands.Cog):
     description="This command will output the result of a dice roll from 1 - 8. If you want multiple rolls add the number you want after the command.")
     async def dice_ten(self, ctx, *args):
 
-        if ctx.message.author.nick:
-            name = ctx.message.author.nick
-        else:
-            name = ctx.message.author.name
-
-        if args:
-            result =  [random.randint(1, 10) for _ in range(int(args[0]))]
-            await ctx.send("You rolled: {}".format(result))
-        else:
-            await ctx.send("{} rolled: {}".format(name, random.randint(1, 10)))
+        await ctx.send(dice_roll(ctx, 10, args))
 
     @commands.check(custom_decorators.check_dnd)
     @commands.command(name="d12",
@@ -84,16 +60,7 @@ class DND_Tools(commands.Cog):
     description="This command will output the result of a dice roll from 1 - 12. If you want multiple rolls add the number you want after the command.")
     async def dice_twelve(self, ctx, *args):
 
-        if ctx.message.author.nick:
-            name = ctx.message.author.nick
-        else:
-            name = ctx.message.author.name
-
-        if args:
-            result =  [random.randint(1, 12) for _ in range(int(args[0]))]
-            await ctx.send("You rolled: {}".format(result))
-        else:
-            await ctx.send("{} rolled: {}".format(name, random.randint(1, 12)))
+        await ctx.send(dice_roll(ctx, 12, args))
 
     @commands.check(custom_decorators.check_dnd)
     @commands.command(name="d20",
@@ -101,16 +68,7 @@ class DND_Tools(commands.Cog):
     description="This command will output the result of a dice roll from 1 - 20. If you want multiple rolls add the number you want after the command.")
     async def dice_twenty(self, ctx, *args):
 
-        if ctx.message.author.nick:
-            name = ctx.message.author.nick
-        else:
-            name = ctx.message.author.name
-
-        if args:
-            result =  [random.randint(1, 20) for _ in range(int(args[0]))]
-            await ctx.send("You rolled: {}".format(result))
-        else:
-            await ctx.send("{} rolled: {}".format(name, random.randint(1, 20)))
+        await ctx.send(dice_roll(ctx, 20, args))
 
 
 def setup(bot):
