@@ -3,17 +3,12 @@ from .. import custom_decorators
 from discord.ext import commands
 import discord
 
-def dice_roll(ctx, sides, count):
-    if ctx.message.author.nick:
-        name = ctx.message.author.nick
-    else:
-        name = ctx.message.author.name
+def dice_roll(roller, sides, count):
+       
+    name = roller.nick if roller.nick else roller.name
+    rangeCount = int(count[0]) if count else 1
     
-    if count:
-        result = "{} rolled: {}".format(name, [random.randint(1, sides) for _ in range(int(count[0]))])
-    else:
-        result =  "{} rolled: {}".format(name, [random.randint(1, sides) for _ in range(1)])
-    return result 
+    return "{} rolled: {}".format(name, [random.randint(1, sides) for _ in range(rangeCount)])
 
 
 class DND_Tools(commands.Cog):
@@ -28,7 +23,7 @@ class DND_Tools(commands.Cog):
     description="This command will output the result of a dice roll from 1 - 4. If you want multiple rolls add the number you want after the command.")
     async def dice_four(self, ctx, *args):
 
-        await ctx.send(dice_roll(ctx, 4, args))
+        await ctx.send(dice_roll(ctx.message.author, 4, args))
 
     @commands.check(custom_decorators.check_dnd)
     @commands.command(name="d6",
