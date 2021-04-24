@@ -11,7 +11,7 @@ def dice_roll(roller, sides, count):
     return "{} rolled: {}".format(name, [random.randint(1, sides) for _ in range(rangeCount)])
 
 
-class DND_Tools(commands.Cog):
+class DND_Dice(commands.Cog):
 
     def __init__(self, bot):
 
@@ -67,4 +67,4 @@ class DND_Tools(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(DND_Tools(bot))
+    bot.add_cog(DND_Dice(bot))
